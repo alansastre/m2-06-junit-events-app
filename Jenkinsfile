@@ -31,5 +31,10 @@ pipeline {
                 sh 'mvn site'
             }
         }
+        stage('Sonar') {
+           steps {
+               sh 'mvn verify sonar:sonar'
+           }
+        }
     }
 }
