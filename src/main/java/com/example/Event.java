@@ -6,16 +6,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+// SUT system under test o Class Under Test
 public class Event {
+
+    /*======================================= ATRIBUTOS =======================================*/
 
     private Long id;
     private String title;
     private EventType type;
-
     private List<Speaker> speakers = new ArrayList<>();
     private List<Attendee> attendees = new ArrayList<>();
 
-    private EventNotificationService eventNotificationService;
+    private EventNotificationService eventNotificationService; // mock
 
     public Event(){
 
@@ -28,6 +30,11 @@ public class Event {
         this.eventNotificationService = eventNotificationService;
     }
 
+    /*======================================= CASUISTICA: 1 ASISTENTE =======================================*/
+
+    /**
+     * AÑADIR ASISTENTE 
+     */
     public void addAttendee(Attendee attendee){
         if(attendee == null)
             return;
@@ -38,6 +45,22 @@ public class Event {
         if (!this.getAttendees().contains(attendee))
             this.getAttendees().add(attendee);
     }
+    
+    /**
+	BORRAR ASISTENTE
+     */
+    public void removeAttendee(Attendee attendee){
+        if(attendee == null)
+            return;
+
+        if (this.getAttendees() == null)
+            this.setAttendees(new ArrayList<>());
+
+        this.getAttendees().remove(attendee);
+    }
+
+    
+    /*======================================= CASUISTICA: VARIOS ASISTENTES =======================================*/
 
     public void addAttendees(List<Attendee> attendees){
         if(attendees == null)
@@ -53,15 +76,6 @@ public class Event {
 
     }
 
-    public void removeAttendee(Attendee attendee){
-        if(attendee == null)
-            return;
-
-        if (this.getAttendees() == null)
-            this.setAttendees(new ArrayList<>());
-
-        this.getAttendees().remove(attendee);
-    }
 
     public void removeAttendees(List<Attendee> attendees){
         if(attendees == null)
@@ -73,10 +87,8 @@ public class Event {
         this.getAttendees().removeIf(attendees::contains);
 
     }
-
-    public void notifyAssistants(){
-        this.eventNotificationService.announce(this);
-    }
+    
+    /*======================================= CASUISTICA:  SPEAKERS =======================================*/
 
     public void addSpeaker(Speaker speaker){
         if (speaker == null)
@@ -89,7 +101,17 @@ public class Event {
             return;
         this.getSpeakers().remove(speaker);
     }
+    
+    
+    /*======================================= CASUISTICA: METODOS QUE DEPENDEN DEL SERVICIO =======================================*/
 
+    public void notifyAssistants(){
+    	this.eventNotificationService.announce(this);
+    }
+
+
+
+    /*======================================= GETTER Y SETTER =======================================*/
 
     public Long getId() {
         return id;
