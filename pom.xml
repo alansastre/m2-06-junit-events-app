@@ -19,7 +19,7 @@
 		<sonar.projectKey>alansastre_m2-06-junit-events-app</sonar.projectKey>
 		<sonar.organization>alansastre</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<sonar.login>39201207b9cac3bc40f68636855af5cb5d1849cd</sonar.login>
+<!-- 		<sonar.login>39201207b9cac3bc40f68636855af5cb5d1849cd</sonar.login> -->
 	</properties>
 	<dependencies>
 
